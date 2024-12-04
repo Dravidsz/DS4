@@ -1,0 +1,22 @@
+@model Parcial3.Models.Ciudades
+
+@{
+    ViewBag.Title = "Crear Ciudad";
+}
+
+<h2>Crear Ciudad</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+
+<a href="@Url.Action("Index")" class="btn btn-secondary">Volver</a>

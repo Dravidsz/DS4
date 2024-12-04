@@ -1,0 +1,25 @@
+@model IEnumerable<Parcial3.Models.Ciudades>
+
+@{
+    ViewBag.Title = "Lista de Ciudades";
+}
+
+<h2>Lista de Ciudades</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ciudad in Model)
+        {
+            <tr>
+                <td>@ciudad.Nombre</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Agregar Nueva Ciudad</a>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProyectoFinal4.Models.Producto>
+
+@{
+    ViewBag.Title = "Inventario";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <!-- Formulario con un botón para cargar los productos -->
+    <form method="post" action="@Url.Action("Inventario")">
+        <button type="submit" class="btn btn-primary">Mostrar Inventario</button>
+    </form>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var producto in Model)
+                {
+                    <tr>
+                        <td>@producto.Nombre</td>
+                        <td>@producto.Descripcion</td>
+                        <td>@producto.Precio</td>
+                        <td>@producto.Stock</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay productos disponibles.</p>
+    }
+
+</main>

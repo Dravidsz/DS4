@@ -1,0 +1,19 @@
+﻿@model List<ProyectoFinal4.Models.Devolucion>
+
+
+<h2>Devoluciones</h2>
+
+@using (Html.BeginForm("Devolucion", "Home", FormMethod.Post))
+{
+    foreach (var devolucion in Model)
+    {
+        <div>
+            <label>@devolucion.NombreProducto (Stock disponible: @devolucion.Stock)</label>
+            <input type="number" name="devoluciones[@devolucion.IdProducto].Cantidad" value="@devolucion.Cantidad" min="1" max="@devolucion.Stock" />
+        </div>
+    }
+
+    <input type="submit" value="Procesar Devolución" />
+}
+
+<p>@ViewBag.Message</p>

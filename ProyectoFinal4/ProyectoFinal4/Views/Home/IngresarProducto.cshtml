@@ -1,0 +1,38 @@
+﻿@model ProyectoFinal4.Models.Producto
+
+@{
+    ViewBag.Title = "Ingresar Producto";
+}
+
+<h2>@ViewBag.Message</h2>
+
+@using (Html.BeginForm("IngresarProducto", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nombre)
+        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Descripcion)
+        @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Descripcion)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Precio)
+        @Html.TextBoxFor(m => m.Precio, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Precio)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Stock)
+        @Html.TextBoxFor(m => m.Stock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Stock)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ingresar Producto</button>
+}

@@ -1,0 +1,62 @@
+@model IEnumerable<Parcial3.Models.Consumo>
+@{
+    ViewBag.Title = "Reporte de Consumos";
+}
+
+<h2>Reporte de Consumos</h2>
+
+@using (Html.BeginForm("Reporte", "Consumo", FormMethod.Get))
+{
+    <div>
+        <label for="EstacionID">Estación:</label>
+        <select id="EstacionID" name="estacionID">
+            <option value="">Seleccione una estación</option>
+            @foreach (var estacion in ViewBag.Estaciones as List<Parcial3.Models.Estacion>)
+            {
+                <option value="@estacion.EstacionID">@estacion.Nombre</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="TipoVehiculoID">Tipo de Vehículo:</label>
+        <select id="TipoVehiculoID" name="tipoVehiculoID">
+            <option value="">Seleccione un tipo de vehículo</option>
+            @foreach (var tipoVehiculo in ViewBag.TiposVehiculos as List<Parcial3.Models.TipoVehiculo>)
+            {
+                <option value="@tipoVehiculo.TipoVehiculoID">@tipoVehiculo.Nombre</option>
+            }
+        </select>
+    </div>
+    <button type="submit">Generar Reporte</button>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Estación</th>
+                <th>Tipo de Vehículo</th>
+                <th>Tipo de Combustible</th>
+                <th>Litros Consumidos</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var consumo in Model)
+            {
+                <tr>
+                    <td>@consumo.Estacion.Nombre</td>
+                    <td>@consumo.TipoVehiculo.Nombre</td>
+                    <td>@consumo.TipoCombustible.Nombre</td>
+                    <td>@consumo.Litros</td>
+                    <td>@consumo.Fecha.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron resultados para los filtros seleccionados.</p>
+}
